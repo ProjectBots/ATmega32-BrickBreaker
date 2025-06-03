@@ -14,9 +14,9 @@ static volatile bool updatedX = false;
 static volatile JoystickState joystickState = {0, 0};
 
 void joystickInit(void) {
-	adcSetup();
-	adcSetChannel(0); // Set initial channel for X-axis
-	adcEnableInterrupts();
+	adcSetupFreeRunning(); // Initialize ADC in free running mode
+	adcSetChannel(0); // Set ADC channel for X-axis
+	adc
 }
 
 void joystickRead(struct JoystickState* state) {
@@ -38,12 +38,5 @@ void requestJoystickUpdate() {
 ISR(ADC_vect) {
 	joystickUpdated = true; // Set the flag when ADC conversion is complete
 	// Read X-axis
-	adcSetChannel(0);
-	state->x = adcRead();
-
-	// Read Y-axis
-	adcSetChannel(1);
-	state->y = adcRead();
-
-	joystickUpdated = false; // Reset the update flag
+	
 }
