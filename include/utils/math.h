@@ -7,6 +7,8 @@
 #ifndef _UTILS_MATH__H__
 #define _UTILS_MATH__H__
 
+#include <stdint.h>
+
 static inline uint8_t absInt8(int8_t val) {
 	if (val < 0) {
 		return -val;

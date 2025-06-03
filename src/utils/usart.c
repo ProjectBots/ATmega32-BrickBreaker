@@ -2,7 +2,7 @@
  * @Authors: Mic Lab Team
  */
 
-#include "usart.h"
+#include "utils/usart.h"
 
 #include <avr/interrupt.h>
 #include <avr/io.h>
@@ -62,7 +62,7 @@ void usartSetup(UsartBaudrate baud, UsartConfig config) {
 	BIT_SET(UCSRB, TXEN);
 }
 
-uint8_t usartWriteString(const char* str) {
+uint8_t uprint(const char* str) {
 	if (txLength != 0) {
 		return 0; /* busy */
 	}
@@ -78,7 +78,7 @@ uint8_t usartWriteString(const char* str) {
 	return txLength;
 }
 
-uint8_t usartPrint(const char* format, ...) {
+uint8_t uprintf(const char* format, ...) {
 	const uint8_t bufferSize = 64;
 	char buffer[bufferSize];
 
@@ -90,5 +90,5 @@ uint8_t usartPrint(const char* format, ...) {
 	vsnprintf(buffer, bufferSize, format, args);
 	va_end(args);
 
-	return usartWriteString(buffer);
+	return uprint(buffer);
 }

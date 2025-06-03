@@ -10,7 +10,7 @@
 #include <avr/pgmspace.h>
 #include <stdint.h>
 
-#include "bitmap.h"
+#include "utils/disp/bitmap.h"
 
 /** Created by https://jinxedbyte.itch.io/1bit-dog-puppy
  *  Converted with the LCD-Image-Converter for the Microcontroller Lab at the Salzburg University of Applied Sciences

@@ -1,4 +1,4 @@
-#include "spi.h"
+#include "utils/spi.h"
 
 #include <avr/io.h>
 

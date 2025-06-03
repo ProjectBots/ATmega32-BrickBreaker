@@ -4,7 +4,7 @@
  *
  */
 
-#include "display.h"
+#include "utils/disp/display.h"
 
 #include <avr/io.h>
 #include <stdarg.h>
@@ -13,10 +13,10 @@
 #include <util/delay.h>
 
 #include "bit.h"
-#include "font8x8.h"
-#include "font8x8vertical.h"
-#include "math.h"
-#include "spi.h"
+#include "utils/disp/font8x8.h"
+#include "utils/disp/font8x8vertical.h"
+#include "utils/math.h"
+#include "utils/spi.h"
 
 #define RESET_PIN PB3
 #define DATA_CMD_PIN PB4

@@ -2,8 +2,7 @@
  * @Author Mic Lab Team
  */
 
-#ifndef usart_h_zidaSSgah23o7ier
-#define usart_h_zidaSSgah23o7ier
+#pragma once
 
 #include <stdbool.h>
 #include <stdint.h>
@@ -22,7 +21,8 @@ void usartSetup(UsartBaudrate baud, UsartConfig config);
  * @param[in] str A zero-terminated string
  * @return The number of characters written
  */
-uint8_t usartWriteString(const char* str);
+uint8_t uprint(const char* str);
+
 
 /** Print a formatted string to the usart interface.
  * A trailing \r\n sequence is NOT appended (also known as DOS/Windows line ending).
@@ -30,6 +30,5 @@ uint8_t usartWriteString(const char* str);
  * @param[in] format A printf-style format string
  * @return The number of characters written of the resulting string
  */
-uint8_t usartPrint(const char* format, ...);
+uint8_t uprintf(const char* format, ...);
 
-#endif
