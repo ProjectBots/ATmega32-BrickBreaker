@@ -1,42 +1,32 @@
 
 #include "joystick.h"
 
-#include <avr/io.h>
 #include <avr/interrupt.h>
+#include <avr/io.h>
 
-#include "utils/adc.h"
-#include "utils/usart.h"
+#include "bit.h"
 
+void joystickInit() {
+	// Set the ADC reference voltage to AREF, Internal Vref turned off
+	BIT_CLR(ADMUX, REFS0);
+	BIT_CLR(ADMUX, REFS1);
 
-static volatile bool joystickUpdated = false;
-static volatile bool updatedX = false;
+	// Set channel to 0 (X-axis)
+	ADMUX &= ~0b11111;
 
-static volatile JoystickState joystickState = {0, 0};
-
-void joystickInit(void) {
-	adcSetupFreeRunning(); // Initialize ADC in free running mode
-	adcSetChannel(0); // Set ADC channel for X-axis
-	adc
-}
-
-void joystickRead(struct JoystickState* state) {
-	if (!joystickUpdated) {
-		return; // No new data available
-	}
-
-	state->x = joystickState.x; // Read X-axis position
-	state->y = joystickState.y; // Read Y-axis position
+	// Enable the ADC
+	ADCSRA = BIT(ADEN);
 }
 
 void requestJoystickUpdate() {
-	joystickUpdated = false; // Reset the update flag
-	joystickState.x = 0; // Reset X-axis position
-	joystickState.y = 0; // Reset Y-axis position
-	adcStartConversion(); // Start ADC conversion for joystick inputs
+	// Start ADC conversion
+	BIT_SET(ADCSRA, ADSC);
 }
 
-ISR(ADC_vect) {
-	joystickUpdated = true; // Set the flag when ADC conversion is complete
-	// Read X-axis
-	
+uint16_t joystickRead() {
+	// Wait for ADC conversion to complete
+	while (BIT_IS_SET(ADCSRA, ADSC));
+
+	// Joystick is rotated, so we invert the value
+	return 1024 - ADC;
 }

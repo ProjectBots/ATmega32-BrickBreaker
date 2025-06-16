@@ -23,4 +23,13 @@ static inline int8_t signInt8(int8_t val) {
 	return 1;
 }
 
+static inline float clamp(float val, float min, float max) {
+	if (val < min) {
+		return min;
+	} else if (val > max) {
+		return max;
+	}
+	return val;
+}
+
 #endif
