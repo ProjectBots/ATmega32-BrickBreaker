@@ -28,7 +28,7 @@ Direction and Speed are detected through reading the analogue values.
 
 ---
 
-## 🔌 Pin Configuration (Example)
+## 🔌 Pin Configuration
 
 | Component   | ATMega32 Pin |
 | ----------- | ------------ |
