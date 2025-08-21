@@ -1,4 +1,4 @@
-# mic-ss2025-wurmannstaetterpawelka-brickbreaker
+# ATmega32 BrickBreaker
 
 This project implements a version of the classic **BlockBreaker** game using the **ATMega32 microcontroller**. The game features real-time paddle control using a **1-axis joystick** and runs on an embedded system with a graphical display.
 
